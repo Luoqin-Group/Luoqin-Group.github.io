@@ -627,12 +627,13 @@
             <a href="https://space.bilibili.com/3494371129296998" target="_blank" class="btn-small"><i class="fab fa-bilibili"></i> 去催更</a>
         </div>
 
-        <!-- 关于区域 + 联系 + 友链 (内容已更新) -->
+        <!-- 关于区域 + 联系 + 友链 (内容已更新，加回了常驻信息) -->
         <div id="about" class="about-section">
             <div class="about-text">
                 <h2>关于我</h2>
                 <p>我是窟枯，游戏（整活）区B站小学生UP主，喜欢把想法变成模组、数据包、整合包或程序。目前正在学优质剪辑和mc动画。</p>
                 <p>除了整活，也喜欢折腾简洁的工具和好玩的交互。慢慢填坑中～</p>
+                <p>常驻 1.21+ 原版 & 模组 · 整活爱好者（No特效）</p>
                 <p>详情请见 <a href="https://www.bilibili.com/video/BV1UT42167xb/" target="_blank" style="color:#2563eb; text-decoration:underline;">BV1UT42167xb</a></p>
             </div>
             <div class="contact-mini">
@@ -663,7 +664,7 @@
             </div>
         </div>
 
-        <!-- 页脚 + 彩蛋 + 新增小字 -->
+        <!-- 页脚 + 彩蛋 + 小字 -->
         <footer class="footer">
             <p>© 2026 Luoqin Group · 持续制作中  <i class="fas fa-heart" style="color:#ef4444;"></i></p>
             <div class="easter-egg" id="easterEgg">
@@ -918,4 +919,21 @@
         const navLinks = document.getElementById('navLinks');
         
         if (menuToggle && navLinks) {
-            menuToggle.addEventListener('click', () =>
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('show');
+            });
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('show');
+                });
+            });
+        }
+
+        // ==================== 预留数据接口 ====================
+        const projectsConfig = [];
+        const videosConfig = [];
+        
+        console.log("[数据接口] 项目/视频配置已预留");
+    </script>
+</body>
+</html>
