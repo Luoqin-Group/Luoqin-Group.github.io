@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>窟枯的个人网站~</title>
+    <!-- 网站图标 (本地) -->
+    <link rel="icon" href="kuku.png" type="image/png">
+    <link rel="shortcut icon" href="kuku.png" type="image/png">
+    <!-- 现代化字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* 顶部导航栏 - 半透明毛玻璃 + 移动端适配 */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        /* Logo 区域：图片 + 文字 */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            white-space: nowrap;
+        }
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        /* 桌面端导航链接 */
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #334155;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .nav-links .social-icon {
+            font-size: 1.3rem;
+            color: #475569;
+        }
+
+        /* 移动端汉堡菜单按钮 (默认隐藏) */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: #334155;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .menu-toggle:hover {
+            color: #2563eb;
+        }
+
+        /* 主容器 */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 2rem 4rem;
+        }
+
+        /* Hero 区域 */
+        .hero {
+            padding: 4rem 0 3rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(145deg, #0f172a, #334155);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* 打字机容器 - 增强版 */
+        .typewriter-wrapper {
+            margin-bottom: 2rem;
+        }
+        .typewriter-container {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: #2563eb;
+            min-height: 3.5rem;
+            border-right: 3px solid #2563eb;
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: blinkCursor 0.8s step-end infinite;
+        }
+        .typewriter-sub {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .typewriter-sub i {
+            font-size: 0.8rem;
+        }
+
+        @keyframes blinkCursor {
+            from, to { border-color: transparent; }
+            50% { border-color: #2563eb; }
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #475569;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.8rem;
+            border-radius: 40px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background: #1e293b;
+            color: white;
+            box-shadow: 0 4px 6px -2px rgba(0,0,0,0.1);
+        }
+
+        .btn-primary:hover {
+            background: #0f172a;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+
+        .btn-outline {
+            border-color: #cbd5e1;
+            color: #334155;
+        }
+
+        .btn-outline:hover {
+            background: #f1f5f9;
+            border-color: #94a3b8;
+        }
+
+        /* 区域标题 */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin: 3rem 0 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #0f172a;
+        }
+
+        .section-title i {
+            color: #2563eb;
+            font-size: 2rem;
+        }
+
+        /* 空状态样式 - 更有趣 */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: white;
+            border-radius: 28px;
+            border: 1px solid #eef2f6;
+            box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.02);
+            color: #94a3b8;
+        }
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.6;
+            animation: idleBounce 2s ease-in-out infinite;
+        }
+        @keyframes idleBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .empty-state p {
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+            color: #64748b;
+        }
+        .empty-state .sub {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-top: 0.5rem;
+        }
+        .empty-state .btn-small {
+            margin-top: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #eef2ff;
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            color: #2563eb;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .empty-state .btn-small:hover {
+            background: #2563eb;
+            color: white;
+        }
+
+        /* 关于区域三栏布局 */
+        .about-section {
+            background: white;
+            border-radius: 32px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+            border: 1px solid #eef2f6;
+            box-shadow: 0 15px 30px -12px rgba(0,0,0,0.05);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .about-text {
+            flex: 2;
+            min-width: 240px;
+        }
+        .contact-mini, .friend-mini {
+            flex: 1;
+            background: #f8fafc;
+            border-radius: 24px;
+            padding: 1.5rem;
+            border: 1px solid #dee7f0;
+            min-width: 200px;
+        }
+        .contact-mini h3, .friend-mini h3 {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 1.2rem;
+        }
+        .contact-item, .friend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.7rem 0;
+            border-bottom: 1px solid #e2e8f0;
+            color: #364558;
+            word-break: break-word;
+        }
+        .contact-item i, .friend-item i {
+            width: 24px;
+            color: #2563eb;
+        }
+        .contact-item a, .friend-item a {
+            color: #364558;
+            text-decoration: none;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+        .contact-item a:hover, .friend-item a:hover {
+            color: #2563eb;
+            text-decoration: underline;
+        }
+        /* 自定义W图标样式 */
+        .friend-item .custom-icon {
+            width: 24px;
+            text-align: center;
+            font-weight: 700;
+            color: #2563eb;
+        }
+        .qq-copy-tip {
+            font-size: 0.7rem;
+            color: #94a3b8;
+            margin-left: 0.5rem;
+            cursor: pointer;
+        }
+        /* 友链申请入口 */
+        .friend-apply {
+            margin-top: 0.8rem;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+        .friend-apply a {
+            color: #2563eb;
+            text-decoration: none;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        .friend-apply a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        /* 弹窗样式 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s;
+        }
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background: white;
+            border-radius: 28px;
+            padding: 2rem;
+            max-width: 360px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 25px 40px -12px rgba(0,0,0,0.25);
+            transform: scale(0.95);
+            transition: transform 0.2s;
+        }
+        .modal-overlay.show .modal-content {
+            transform: scale(1);
+        }
+        .modal-content h3 {
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+        .modal-content p {
+            color: #475569;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+        }
+        .modal-content .contact-info {
+            background: #f1f5f9;
+            padding: 1rem;
+            border-radius: 16px;
+            margin: 1rem 0;
+            text-align: left;
+        }
+        .modal-content .contact-info div {
+            padding: 0.3rem 0;
+            font-family: monospace;
+        }
+        .modal-close {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.8rem;
+            border-radius: 40px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: background 0.2s;
+        }
+        .modal-close:hover {
+            background: #1d4ed8;
+        }
+
+        /* 回到顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2563eb;
+            font-size: 1.4rem;
+            text-decoration: none;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 99;
+        }
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-to-top:hover {
+            background: #2563eb;
+            color: white;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 20px rgba(37, 99, 235, 0.2);
+        }
+
+        /* 键盘彩蛋特效 - 彩虹闪烁 */
+        .easter-rainbow {
+            animation: rainbowFlash 0.6s ease-out;
+        }
+        @keyframes rainbowFlash {
+            0% { background-color: rgba(255, 0, 0, 0.2); }
+            20% { background-color: rgba(255, 165, 0, 0.2); }
+            40% { background-color: rgba(255, 255, 0, 0.2); }
+            60% { background-color: rgba(0, 255, 0, 0.2); }
+            80% { background-color: rgba(0, 127, 255, 0.2); }
+            100% { background-color: rgba(127, 0, 255, 0.2); }
+        }
+
+        /* 页脚 + 彩蛋 */
+        .footer {
+            text-align: center;
+            padding: 2.5rem 0 1rem;
+            color: #64748b;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 2rem;
+        }
+        .easter-egg {
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #f1f5f9;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            margin-top: 0.5rem;
+        }
+        .easter-egg:hover {
+            background: #e2e8f0;
+        }
+        .footer-sub {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-top: 0.8rem;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0.8rem 1.2rem;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
+                padding: 1.5rem;
+                gap: 1.2rem;
+                border-bottom: 1px solid #e2e8f0;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            }
+            .nav-links.show {
+                display: flex;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .typewriter-container {
+                font-size: 1.2rem;
+                white-space: normal;
+                animation: none;
+                border-right: none;
+            }
+            .typewriter-sub {
+                font-size: 0.75rem;
+            }
+            .container {
+                padding: 1rem 1.2rem 3rem;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+            .about-section {
+                padding: 1.5rem;
+                gap: 1.2rem;
+            }
+            .back-to-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            .logo-img {
+                width: 26px;
+                height: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航栏 + 汉堡菜单 -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="kuku.png" alt="logo" class="logo-img" onerror="this.style.display='none'">
+            Luoqin Group
+        </div>
+        <button class="menu-toggle" id="menuToggle" aria-label="菜单">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="nav-links" id="navLinks">
+            <a href="#projects">项目</a>
+            <a href="#videos">视频</a>
+            <a href="#about">关于</a>
+            <a href="https://space.bilibili.com/3494371129296998" target="_blank" class="social-icon" title="B站"><i class="fab fa-bilibili"></i></a>
+            <a href="https://github.com/Luoqin-Group" target="_blank" class="social-icon" title="GitHub"><i class="fab fa-github"></i></a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Hero 区域 + 增强打字机 -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>窟枯<br>的个人网站</h1>
+                <div class="typewriter-wrapper">
+                    <div class="typewriter-container" id="typewriter"></div>
+                    <div class="typewriter-sub">
+                        <i class="fas fa-terminal"></i> 今日整活语录 · 点击刷新
+                    </div>
+                </div>
+                <p>我是窟枯，游戏（整活）区B站小学生UP主，喜欢把想法变成模组、数据包、整合包或程序。目前正在学优质剪辑和mc动画。</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary"><i class="fas fa-diagram-project"></i> 浏览项目</a>
+                    <a href="https://space.bilibili.com/3494371129296998" target="_blank" class="btn btn-outline"><i class="fab fa-bilibili"></i> B站频道</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 我的项目 - 空状态 + 跳转按钮 -->
+        <div id="projects" class="section-title">
+            <i class="fas fa-cube"></i> 我的项目
+        </div>
+        <div class="empty-state">
+            <i class="fas fa-hard-hat"></i>
+            <p>🚧 施工中，先挖会儿矿 🚧</p>
+            <div class="sub">模组、数据包、整活工具…… 正在慢慢填坑</div>
+            <a href="https://space.bilibili.com/3494371129296998" target="_blank" class="btn-small"><i class="fab fa-bilibili"></i> 去B站监工</a>
+        </div>
+
+        <!-- 经典投稿 - 空状态 -->
+        <div id="videos" class="section-title">
+            <i class="fas fa-video"></i> 经典投稿
+        </div>
+        <div class="empty-state">
+            <i class="fas fa-clapperboard"></i>
+            <p>🎬 素材攒集中 🎬</p>
+            <div class="sub">等我剪完就发！(大概)</div>
+            <a href="https://space.bilibili.com/3494371129296998" target="_blank" class="btn-small"><i class="fab fa-bilibili"></i> 去催更</a>
+        </div>
+
+        <!-- 关于区域 + 联系 + 友链 (内容已更新) -->
+        <div id="about" class="about-section">
+            <div class="about-text">
+                <h2>关于我</h2>
+                <p>我是窟枯，游戏（整活）区B站小学生UP主，喜欢把想法变成模组、数据包、整合包或程序。目前正在学优质剪辑和mc动画。</p>
+                <p>除了整活，也喜欢折腾简洁的工具和好玩的交互。慢慢填坑中～</p>
+                <p>详情请见 <a href="https://www.bilibili.com/video/BV1UT42167xb/" target="_blank" style="color:#2563eb; text-decoration:underline;">BV1UT42167xb</a></p>
+            </div>
+            <div class="contact-mini">
+                <h3><i class="fas fa-paper-plane"></i> 联系</h3>
+                <div class="contact-item"><i class="fab fa-bilibili"></i> <a href="https://space.bilibili.com/3494371129296998" target="_blank">@窟枯のQZR</a></div>
+                <div class="contact-item" id="qqContact">
+                    <i class="fab fa-qq"></i> 
+                    <a id="qqLink">2175959168</a>
+                    <span class="qq-copy-tip"><i class="far fa-copy"></i> 点击复制</span>
+                </div>
+                <div class="contact-item"><i class="fab fa-github"></i> <a href="https://github.com/Luoqin-Group" target="_blank">Luoqin-Group</a></div>
+                <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:2175959168@qq.com">2175959168@qq.com</a></div>
+            </div>
+            <div class="friend-mini">
+                <h3><i class="fas fa-link"></i> 友链</h3>
+                <div class="friend-item"><i class="fab fa-bilibili"></i> <a href="https://space.bilibili.com/3546966153759675" target="_blank">小P三角洲</a></div>
+                <div class="friend-item">
+                    <span class="custom-icon">W</span> 
+                    <a href="https://wzn.pages.dev/" target="_blank">王璋诺的网站</a>
+                </div>
+                <div class="friend-item" style="border-bottom: none; opacity: 0.6;">
+                    <i class="fas fa-plus-circle"></i> 更多友链筹备中...
+                </div>
+                <!-- 友链申请入口 -->
+                <div class="friend-apply">
+                    <a href="#" id="applyFriendBtn"><i class="fas fa-hand-peace"></i> 申请友链 →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 页脚 + 彩蛋 + 新增小字 -->
+        <footer class="footer">
+            <p>© 2026 Luoqin Group · 持续制作中  <i class="fas fa-heart" style="color:#ef4444;"></i></p>
+            <div class="easter-egg" id="easterEgg">
+                <i class="fas fa-pickaxe"></i> <span id="eggText">今日整活进度: 67%</span>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="footer-sub">
+                （话说可以关注我或给我亿些Star吗？）
+            </div>
+        </footer>
+    </main>
+
+    <!-- 回到顶部按钮 -->
+    <a href="#" class="back-to-top" id="backToTop" aria-label="回到顶部">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- 友链申请弹窗 -->
+    <div class="modal-overlay" id="applyModal">
+        <div class="modal-content">
+            <h3><i class="fas fa-handshake"></i> 申请友链</h3>
+            <p>欢迎交换友链！请通过以下方式联系我：</p>
+            <div class="contact-info">
+                <div><i class="fab fa-qq"></i> QQ: 2175959168</div>
+                <div><i class="fab fa-bilibili"></i> B站: @窟枯のQZR</div>
+                <div><i class="fas fa-envelope"></i> 邮箱: 2175959168@qq.com</div>
+            </div>
+            <p style="font-size: 0.85rem;">留言请备注“友链申请”～</p>
+            <button class="modal-close" id="closeModalBtn">知道了</button>
+        </div>
+    </div>
+
+    <script>
+        // ==================== 增强打字机效果 ====================
+        const sentences = [
+            "我再也不整活了啊啊... 才怪！",
+            "Bug越改越多，头发越掉越少 😭",
+            "今日整活：让苦力怕跳舞",
+            "模组开发中... 求测试员！",
+            "B站视频 02:00 更新，不见不散",
+            "/gamemode creative 启动！",
+            "这个月一定要把动画肝出来！"
+        ];
+        let sentenceIndex = 0;
+        let charIndex = 0;
+        let currentSentence = sentences[sentenceIndex];
+        const typewriterElement = document.getElementById('typewriter');
+        let isDeleting = false;
+
+        function typeEffect() {
+            if (!typewriterElement) return;
+
+            if (isDeleting) {
+                typewriterElement.textContent = currentSentence.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typewriterElement.textContent = currentSentence.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentSentence.length) {
+                isDeleting = true;
+                setTimeout(typeEffect, 2500);
+                return;
+            }
+
+            if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                sentenceIndex = (sentenceIndex + 1) % sentences.length;
+                currentSentence = sentences[sentenceIndex];
+                setTimeout(typeEffect, 500);
+                return;
+            }
+
+            const speed = isDeleting ? 50 : 100;
+            setTimeout(typeEffect, speed);
+        }
+
+        if (typewriterElement) {
+            typewriterElement.textContent = '';
+            setTimeout(typeEffect, 500);
+        }
+
+        // ==================== 回到顶部按钮 ====================
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+        
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ==================== 友链申请弹窗 ====================
+        const applyBtn = document.getElementById('applyFriendBtn');
+        const modal = document.getElementById('applyModal');
+        const closeModal = document.getElementById('closeModalBtn');
+        
+        function openModal() {
+            modal.classList.add('show');
+        }
+        function closeModalFunc() {
+            modal.classList.remove('show');
+        }
+        
+        if (applyBtn) {
+            applyBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal();
+            });
+        }
+        if (closeModal) {
+            closeModal.addEventListener('click', closeModalFunc);
+        }
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModalFunc();
+        });
+
+        // ==================== 控制台彩蛋 ====================
+        console.log("%c✨ 欢迎来到窟枯的网站！ ✨", "color: #2563eb; font-size: 16px; font-weight: bold;");
+        console.log("%c我是窟枯，游戏（整活）区B站UP主", "color: #7c3aed; font-size: 14px;");
+        console.log("%c想要交换友链？联系QQ: 2175959168", "color: #10b981; font-size: 12px;");
+        console.log("%c试试输入秘籍: ↑ ↑ ↓ ↓ ← → ← → B A", "color: #f59e0b; font-size: 12px; font-family: monospace;");
+        
+        // ==================== 键盘彩蛋 (经典秘籍) ====================
+        let konamiCode = [];
+        const secretSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
+        
+        document.addEventListener('keydown', (e) => {
+            konamiCode.push(e.code);
+            if (konamiCode.length > secretSequence.length) {
+                konamiCode.shift();
+            }
+            
+            let match = true;
+            for (let i = 0; i < konamiCode.length; i++) {
+                if (konamiCode[i] !== secretSequence[i]) {
+                    match = false;
+                    break;
+                }
+            }
+            
+            if (match && konamiCode.length === secretSequence.length) {
+                document.body.classList.add('easter-rainbow');
+                setTimeout(() => {
+                    document.body.classList.remove('easter-rainbow');
+                }, 600);
+                
+                const toast = document.createElement('div');
+                toast.textContent = '🎉 秘籍触发！整活能量 +100 🎉';
+                toast.style.position = 'fixed';
+                toast.style.bottom = '100px';
+                toast.style.right = '20px';
+                toast.style.background = '#1e293b';
+                toast.style.color = '#facc15';
+                toast.style.padding = '12px 20px';
+                toast.style.borderRadius = '40px';
+                toast.style.fontSize = '14px';
+                toast.style.fontWeight = '500';
+                toast.style.zIndex = '1000';
+                toast.style.boxShadow = '0 8px 20px rgba(0,0,0,0.2)';
+                toast.style.animation = 'fadeOut 2s ease forwards';
+                document.body.appendChild(toast);
+                
+                setTimeout(() => {
+                    toast.remove();
+                }, 2000);
+                
+                const eggSpan = document.getElementById('eggText');
+                if (eggSpan) {
+                    const originalText = eggSpan.textContent;
+                    eggSpan.textContent = '✨ 秘籍触发！整活能量爆棚 ✨';
+                    setTimeout(() => {
+                        eggSpan.textContent = originalText;
+                    }, 3000);
+                }
+                
+                konamiCode = [];
+            }
+        });
+        
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = `
+            @keyframes fadeOut {
+                0% { opacity: 1; transform: translateY(0); }
+                70% { opacity: 1; }
+                100% { opacity: 0; transform: translateY(-20px); visibility: hidden; }
+            }
+        `;
+        document.head.appendChild(styleSheet);
+
+        // ==================== QQ链接优化：点击复制 ====================
+        const qqLink = document.getElementById('qqLink');
+        const qqNumber = '2175959168';
+        
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const copySpan = document.querySelector('#qqContact .qq-copy-tip');
+                if (copySpan) {
+                    const originalHTML = copySpan.innerHTML;
+                    copySpan.innerHTML = '<i class="fas fa-check"></i> 已复制';
+                    setTimeout(() => {
+                        copySpan.innerHTML = originalHTML;
+                    }, 1500);
+                }
+            }).catch(() => {
+                alert('手动复制吧: ' + text);
+            });
+        }
+
+        if (qqLink) {
+            qqLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                copyToClipboard(qqNumber);
+            });
+        }
+        
+        const copyTip = document.querySelector('#qqContact .qq-copy-tip');
+        if (copyTip) {
+            copyTip.addEventListener('click', (e) => {
+                e.stopPropagation();
+                copyToClipboard(qqNumber);
+            });
+        }
+
+        // ==================== 页脚彩蛋：点击随机变化 ====================
+        const eggText = document.getElementById('eggText');
+        const easterEgg = document.getElementById('easterEgg');
+        const eggMessages = [
+            '今日整活进度: 67%', 'Bug数量: 12只', '头发剩余: 85%', 
+            '今日摸鱼指数: 中', '模组代码行数: 2048', '视频剪辑进度: 30%',
+            '肝度: 🔥🔥🔥', '粉丝愿望: +1', '已拒绝躺平: ✅', '挖矿进度: 钻石!'
+        ];
+        
+        if (easterEgg) {
+            easterEgg.addEventListener('click', () => {
+                const randomMsg = eggMessages[Math.floor(Math.random() * eggMessages.length)];
+                eggText.textContent = randomMsg;
+                easterEgg.style.transform = 'scale(0.98)';
+                setTimeout(() => { easterEgg.style.transform = ''; }, 150);
+            });
+        }
+
+        // ==================== 移动端汉堡菜单 ====================
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () =>
